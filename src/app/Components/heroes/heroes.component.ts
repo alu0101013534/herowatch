@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,Output, EventEmitter, OnInit } from '@angular/core';
 import { Hero } from '../../Classes/hero';
 import { HeroService } from '../../Services/hero.service';
 
@@ -13,11 +13,13 @@ export class HeroesComponent implements OnInit {
 
   selectedHero: Hero;
 
+  @Output() selectedHeroOutput = new EventEmitter<Hero>();
   show:boolean=true;
 
   onSelect(hero: Hero): void {
       this.selectedHero = hero;
       
+    this.selectedHeroOutput.emit(this.selectedHero);
   }
 
 

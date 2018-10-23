@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,Output, EventEmitter, OnInit } from '@angular/core';
 import { SuperPower } from '../../../Classes/superpower';
 import { HeroService } from '../../../Services/hero.service';
 
@@ -13,6 +13,8 @@ export class SuperpowerComponent implements OnInit {
   superpowers: SuperPower[];
 
   selectedPower: SuperPower;
+  
+  @Output() selectedPowerOutput = new EventEmitter<SuperPower>();
   constructor(private heroService: HeroService) { }
 
   ngOnInit() {
@@ -25,7 +27,10 @@ export class SuperpowerComponent implements OnInit {
 
   onSelect(superpower: SuperPower): void {
     this.selectedPower = superpower;
+    this.selectedPowerOutput.emit(this.selectedPower);
     
 }
+
+  
 
 }

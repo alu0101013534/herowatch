@@ -32,14 +32,19 @@
 
   <div class="row"> 
 <div class="col-md-4">
-  <app-heroes></app-heroes>
+  hero: {{hero}}
+  <app-heroes (selectedHeroOutput)="heroEvent($event)"></app-heroes>
 </div>
 
 <div class="col-md-4">
-  <app-pets></app-pets>
+  
+    pet: {{pet}}
+  <app-pets (selectedPetOutput)="petEvent($event)"></app-pets>
 </div>
 <div class="col-md-4">
-    <app-superpower></app-superpower>
+  
+    Superpower: {{superpower}}
+    <app-superpower (selectedPowerOutput)="powerEvent($event)"></app-superpower>
 </div>
 
   

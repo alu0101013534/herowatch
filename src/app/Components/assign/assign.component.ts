@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HeroService } from '../../Services/hero.service';
 
 @Component({
   selector: 'app-assign',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AssignComponent implements OnInit {
 
-  constructor() { }
+  constructor(private heroService: HeroService) { }
 
   ngOnInit() {
   }
 
+  newAssign(): void {
+    this.heroService.assignHeroesPets();
+ }
+ deleteAll(): void {
+   this.heroService.deleteAll();
+}
 }
