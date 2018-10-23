@@ -22,4 +22,11 @@ export class PetsComponent implements OnInit {
     this.heroService.getPets()
         .subscribe(pets => this.pets = pets);
   }
+
+
+  
+  onSelect(pet: Pet): void {
+    this.selectedPet = pet;
+    
+}
 }

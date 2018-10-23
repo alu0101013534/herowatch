@@ -16,11 +16,16 @@ export class SuperpowerComponent implements OnInit {
   constructor(private heroService: HeroService) { }
 
   ngOnInit() {
-    this.getHeroes();
+    this.getPowers();
   }
-  getHeroes(): void {
+  getPowers(): void {
     this.heroService.getSuperpowers()
         .subscribe(superpowers => this.superpowers = superpowers);
   }
+
+  onSelect(superpower: SuperPower): void {
+    this.selectedPower = superpower;
+    
+}
 
 }
