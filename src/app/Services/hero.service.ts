@@ -12,9 +12,17 @@ import { Observable, of } from 'rxjs';
   providedIn: 'root'
 })
 export class HeroService {
+
   private messageSource = new BehaviorSubject('1');
   currentMessage = this.messageSource.asObservable();
 
+  selectedHero: Hero;
+  selectedPet: Pet;
+  selectedSuperPower: SuperPower;
+  private heroLast:boolean;
+
+
+// getters and setters
   getHeroes(): Observable<Hero[]> {
     return of(HEROES);
   }
@@ -24,6 +32,111 @@ export class HeroService {
   getSuperpowers(): Observable<SuperPower[]> {
     return  of(SUPERPOWERS);
   }
+
+  getSelectedHero(): Observable<Hero> {
+    return of(this.selectedHero);
+  }
+  getSelectedPet(): Observable<Pet> {
+    return of(this.selectedPet);
+  }
+  getSelectedSuperpower(): Observable<SuperPower> {
+    return  of(this.selectedSuperPower);
+  }
+
+  setSelectedHero(h: Hero){
+
+    this.selectedHero=h;
+    this.heroLast =true;
+    
+    if(this.selectedHero.superpower!=null)
+      this.selectedSuperPower=this.selectedHero.superpower;
+  }
+  setSelectedPet(p: Pet){
+
+    this.selectedPet=p;
+    this.heroLast =false;
+    if(this.selectedPet.superpower!=null)
+      this.selectedSuperPower=this.selectedPet.superpower;
+  }
+  setSelectedSuperPower(s: SuperPower){
+    this.selectedSuperPower=s;
+  }
+  
+//assign a power to a hero or pet  
+newAssignPower(){
+  if((this.selectedHero!=null || this.selectedPet!=null)&& this.selectedSuperPower!=null ){
+    this.searchAndRemovePower(this.selectedSuperPower.id);
+    if(this.heroLast){
+        //remove previous power if they had one
+        if(this.selectedHero.superpower==null){
+          this.selectedHero.superpower=this.selectedSuperPower;
+          }
+          else 
+          {
+            
+            this.selectedHero.superpower.assigned=false;
+            this.selectedHero.superpower=this.selectedSuperPower;
+          }
+      }
+      else {
+        //remove previous power if they had one
+        if(this.selectedPet.superpower==null){
+          this.selectedPet.superpower=this.selectedSuperPower;
+          }
+          else 
+          {
+            
+            this.selectedPet.superpower.assigned=false;
+            this.selectedPet.superpower=this.selectedSuperPower;
+          }
+      }
+    this.selectedSuperPower.assigned=true;
+  }
+}
+
+// superpowers cant be repeated so every time a new assignment is comming we need to remove that power if someone has it 
+searchAndRemovePower(powId: number){
+var i;
+      for(i=0;i<HEROES.length;i++){
+        if( HEROES[i].superpower!=null && HEROES[i].superpower.id==powId){
+            
+          HEROES[i].superpower=null;
+        }
+      }
+    for(i=0;i<PETS.length;i++){
+      if(PETS[i].superpower!=null && PETS[i].superpower.id==powId){
+          
+        PETS[i].superpower=null;
+      }
+    }
+
+  
+}
+//directly removes superpowers from selected hero/pet
+removePower(){
+  if((this.selectedHero!=null || this.selectedPet!=null)&& this.selectedSuperPower!=null ){
+    if(this.heroLast){
+        this.selectedHero.superpower=null;
+      }
+      else {
+        this.selectedPet.superpower=null;
+      }
+    this.selectedSuperPower.assigned=false;
+  }
+}
+
+
+//directly removes partner from selected hero/pet
+removePartner(){
+  if((this.selectedHero!=null && this.selectedPet!=null)){
+  
+        this.selectedHero.pet=null;
+    
+        this.selectedPet.hero=null;
+  }
+}
+
+//random assignation partners and powers
   assignHeroesPets(){
     var i,j; //i: iterator, j Counter and second iterator
     var times=20; // number of times it shuffles array positions
@@ -102,15 +215,25 @@ export class HeroService {
   }
 
 
-  deletePetPartner(hero){
+  deletePetPartner(){
     var i;
+    
+    if(this.selectedPet.hero!=null){
     for(i=0;i<HEROES.length;i++){
-      if( HEROES[i].id==hero.id){
+      if( HEROES[i].id==this.selectedPet.hero.id){
           
         HEROES[i].pet=null;
       }
     }
-    
+  }
+    if(this.selectedHero.pet!=null){
+    for(i=0;i<PETS.length;i++){
+      if( PETS[i].id==this.selectedHero.pet.id){
+          
+        PETS[i].hero=null;
+      }
+    }
+  }
 
   }
 
@@ -159,12 +282,12 @@ export class HeroService {
 
   }
 
-  assignPartner(hero,pet){
-    var h,p;
-    h=this.getHero(hero.id);
-    p=this.getPet(pet.id);
-    h.pet=p;
-    p.hero=h;
+  assignPartner(){
+    this.deletePetPartner();
+    this.selectedHero.pet=this.selectedPet;
+
+    
+    this.selectedPet.hero=this.selectedHero;
   }
 
   changeMessage(message: string) {

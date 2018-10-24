@@ -11,12 +11,14 @@ import { SuperpowerModule } from './Modules/superpower/superpower.module';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AlertModule } from 'ngx-bootstrap';
+import { HeropetComponent } from './Components/heropet/heropet.component';
 @NgModule({
   declarations: [
     AppComponent,
     HeroesComponent,
     PetsComponent,
-    AssignComponent
+    AssignComponent,
+    HeropetComponent
   ],
   imports: [
     AlertModule.forRoot(),

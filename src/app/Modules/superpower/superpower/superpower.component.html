@@ -4,6 +4,6 @@
                 <li *ngFor="let superpower of superpowers"
                     [class.selected]="superpower === selectedPower"
                     (click)="onSelect(superpower)">
-                    <span class="badge">{{superpower.id}}</span> {{superpower.name}} <img src="../../../../assets/checked.png" *ngIf="superpower.assigned"  >
+                    <span class="badge">{{superpower.id}}</span> {{superpower.name}} <img src="../../../../assets/checkedB.png" *ngIf="superpower.assigned"  >
                 </li>
 </ul>

@@ -26,4 +26,6 @@ export class AppComponent {
   powerEvent(superpower: SuperPower){
     this.superpower=superpower.name;
   }
+
+  
 }

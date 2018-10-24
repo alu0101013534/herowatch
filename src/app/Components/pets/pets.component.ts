@@ -17,9 +17,9 @@ export class PetsComponent implements OnInit {
   constructor(private heroService: HeroService) { }
   @Output() selectedPetOutput = new EventEmitter<Pet>();
   ngOnInit() {
-    this.getHeroes();
+    this.getPets();
   }
-  getHeroes(): void {
+  getPets(): void {
     this.heroService.getPets()
         .subscribe(pets => this.pets = pets);
         
@@ -31,5 +31,6 @@ export class PetsComponent implements OnInit {
     this.selectedPet = pet;
     this.selectedPetOutput.emit(this.selectedPet);
     
+    this.heroService.setSelectedPet(this.selectedPet);
   }
 }

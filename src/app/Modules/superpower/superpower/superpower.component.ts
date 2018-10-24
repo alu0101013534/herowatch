@@ -23,11 +23,14 @@ export class SuperpowerComponent implements OnInit {
   getPowers(): void {
     this.heroService.getSuperpowers()
         .subscribe(superpowers => this.superpowers = superpowers);
+        
   }
 
   onSelect(superpower: SuperPower): void {
     this.selectedPower = superpower;
     this.selectedPowerOutput.emit(this.selectedPower);
+    
+    this.heroService.setSelectedSuperPower(this.selectedPower);
     
 }
 

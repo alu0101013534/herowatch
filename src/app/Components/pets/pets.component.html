@@ -1,11 +1,10 @@
 
 
-  <h2>My Pets</h2> 
-      
-  <ul class="pets">
+<h2>My Pets</h2>    
+<ul class="pets">
       <li *ngFor="let pet of pets"
-          [class.selected]="pet === selectedPet"
-          (click)="onSelect(pet)">
-          <span  class="badge">{{pet.id}}</span> {{pet.name}}<img src="../../../assets/checked.png" *ngIf="pet.hero"  >
-      </li>
-  </ul>
+        [class.selected]="pet === selectedPet"
+        (click)="onSelect(pet)">
+          <span  class="badge">{{pet.id}}</span> {{pet.name}}<img src="../../../assets/checked.png" *ngIf="pet.hero"  > <img src="../../../../assets/checkedB.png" *ngIf="pet.superpower"  >
+    </li>
+</ul>

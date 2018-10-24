@@ -13,19 +13,25 @@
 
     <div class="row"> 
         <div  class="col-md-4">
-            <h2> Partners & Powers</h2>
+            <h2> Partners & Powers
+                  
+              
+            </h2>
+            
+       
+       
             <button (click)="newAssign()">New Assign All</button>
             <button (click)="deleteAll()">Delete All</button> 
         </div>
     <div  class="col-md-4">
-      <h2>Partners</h2>
-      <button >Add Partner</button>
-      <button >Delete Partner</button>
+    <h2>Partners</h2> 
+    <button (click)="assign()">Add Partner</button>
+    <button (click)="removePartner()">Delete Partner</button>
     </div>
     <div  class="col-md-4">
         <h2>Powers</h2>
-        <button >Add Power</button>
-        <button >Remove Power</button>
+        <button (click)="newAssignPower()">Add Power</button>
+        <button (click)="removePower()">Remove Power</button>
     </div>
 </div>   
 </div>   

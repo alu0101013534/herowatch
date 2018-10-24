@@ -29,6 +29,9 @@
         <li class="nav-item">
           <a class="nav-link"  routerLink="/pets" href="#">Pets </a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link"  routerLink="/partners" href="#">Partners </a>
+        </li>
       </ul>
     </div>
   </nav>
@@ -36,13 +39,12 @@
 <div class="container"> 
 
   <div class="row"> 
-<div class="col-md-4">
+<div class="col-md-8">
   <router-outlet ></router-outlet>
 </div>
 
 <div class="col-md-4">
   
-    Superpower: {{superpower}}
     <app-superpower (selectedPowerOutput)="powerEvent($event)"></app-superpower>
 </div>
 

@@ -20,6 +20,7 @@ export class HeroesComponent implements OnInit {
       this.selectedHero = hero;
       
     this.selectedHeroOutput.emit(this.selectedHero);
+    this.heroService.setSelectedHero(this.selectedHero);
   }
 
 
