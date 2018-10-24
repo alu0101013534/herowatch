@@ -14,6 +14,7 @@ import { AlertModule } from 'ngx-bootstrap';
 import { HeropetComponent } from './Components/heropet/heropet.component';
 import { HeroDetailComponent } from './Components/hero-detail/hero-detail.component';
 import { PetDetailComponent } from './Components/pet-detail/pet-detail.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +29,7 @@ import { PetDetailComponent } from './Components/pet-detail/pet-detail.component
     AlertModule.forRoot(),
     BrowserModule,
     SuperpowerModule,
+    NgbModule,
     AppRoutingModule
 
   ],

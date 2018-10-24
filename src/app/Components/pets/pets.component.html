@@ -9,4 +9,4 @@
     </li>
 </ul>
 
-<button *ngIf="selectedPet" type="button" class="btn btn-primary" routerLink="/petdetail/{{selectedPet.id}}">{{selectedPet.name}} Details</button>
+<button *ngIf="selectedPet" type="button" class="btn btn-primary" routerLink="/petdetail/{{selectedPet.id}}" skipLocationChange>{{selectedPet.name}} Details</button>

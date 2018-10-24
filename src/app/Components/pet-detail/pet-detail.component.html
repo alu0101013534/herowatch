@@ -10,6 +10,7 @@
       <span style="font-weight: bold;">Superpower: </span> <span *ngIf="pet.superpower">{{pet.superpower.name}} </span> 
       <br>  
       <span style="font-weight: bold;">Superpower info: </span><br><span *ngIf="pet.superpower">{{pet.superpower.description}}</span></p>
-      <a style="color:white"(click)="goBack()" class="btn btn-primary">Go Back</a>
+      
+      <button  type="button" class="btn btn-primary" routerLink="/pets" skipLocationChange>Go Back</button>
     </div>
   </div>

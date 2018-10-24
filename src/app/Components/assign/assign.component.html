@@ -1,37 +1,32 @@
 
 <head>
-  
 
     <link rel="stylesheet" href="../../node_modules/bootstrap/css/bootstrap.min.css">
     <script src="../../node_modules/bootstrap/js/bootstrap.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-      </head>
+    </head>
     
 <div class="container"> 
 
     <div class="row"> 
         <div  class="col-md-4">
-            <h2> Partners & Powers
-                  
-              
+            <h2> Partners & Powers  
             </h2>
             
-       
-       
-            <button (click)="newAssign()">New Assign All</button>
-            <button (click)="deleteAll()">Delete All</button> 
+            <button type="button" class="btn btn-secondary" (click)="newAssign()">New Assign All</button>&nbsp;
+            <button type="button" class="btn btn-secondary" (click)="deleteAll()">Delete All</button> 
         </div>
     <div  class="col-md-4">
     <h2>Partners</h2> 
-    <button (click)="assign()">Add Partner</button>
-    <button (click)="removePartner()">Delete Partner</button>
+    <button type="button" class="btn btn-secondary" (click)="assign()">Add Partner</button>&nbsp;
+    <button type="button" class="btn btn-secondary" (click)="removePartner()">Delete Partner</button>
     </div>
     <div  class="col-md-4">
         <h2>Powers</h2>
-        <button (click)="newAssignPower()">Add Power</button>
-        <button (click)="removePower()">Remove Power</button>
+        <button type="button" class="btn btn-secondary" (click)="newAssignPower()">Add Power</button>&nbsp;
+        <button type="button" class="btn btn-secondary" (click)="removePower()">Remove Power</button>
     </div>
 </div>   
 </div>   

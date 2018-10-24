@@ -11,4 +11,4 @@
 </ul>
 
 
-<button *ngIf="selectedHero" type="button" class="btn btn-primary" routerLink="/detail/{{selectedHero.id}}">{{selectedHero.name}} Details</button>
+<button *ngIf="selectedHero" type="button" class="btn btn-primary" routerLink="/detail/{{selectedHero.id}}" skipLocationChange>{{selectedHero.name}} Details</button>

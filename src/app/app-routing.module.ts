@@ -7,7 +7,7 @@ import { AssignComponent }  from './Components/assign/assign.component';
 import { HeroDetailComponent }  from './Components/hero-detail/hero-detail.component';
 import { PetDetailComponent }  from './Components/pet-detail/pet-detail.component';
 const routes: Routes = [
-  { path: '', redirectTo: '/heroes', pathMatch: 'full' },
+  { path: '', redirectTo: '', pathMatch: 'full' },
   { path: 'assign', component: AssignComponent },
   { path: 'detail/:id', component: HeroDetailComponent },
   { path: 'petdetail/:id', component: PetDetailComponent },

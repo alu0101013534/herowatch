@@ -24,13 +24,13 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link"  routerLink="/heroes" href="#">Heroes </a>
+          <a class="nav-link"  routerLink="/heroes" skipLocationChange href="#">Heroes </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link"  routerLink="/pets" href="#">Pets </a>
+          <a class="nav-link"  routerLink="/pets" skipLocationChange href="#">Pets </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link"  routerLink="/partners" href="#">Partners </a>
+          <a class="nav-link"  routerLink="/partners"skipLocationChange  href="#">Partners </a>
         </li>
       </ul>
     </div>
@@ -39,6 +39,9 @@
 <div class="container"> 
 
   <div class="row"> 
+      <div class="col-md-12" style="border: 1px solid lightgray;background: lightgray;margin-bottom: 50px;">
+          <app-assign></app-assign>
+        </div>
 <div class="col-md-8">
   <router-outlet ></router-outlet>
 </div>
@@ -49,8 +52,6 @@
 </div>
 
   
-    <div class="col-md-12" style="border: 1px solid red">
-      <app-assign></app-assign>
-    </div>
+    
 </div>
 </div>
