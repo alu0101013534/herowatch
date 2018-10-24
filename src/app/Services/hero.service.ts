@@ -115,12 +115,9 @@ var i;
 //directly removes superpowers from selected hero/pet
 removePower(){
   if((this.selectedHero!=null || this.selectedPet!=null)&& this.selectedSuperPower!=null ){
-    if(this.heroLast){
-        this.selectedHero.superpower=null;
-      }
-      else {
-        this.selectedPet.superpower=null;
-      }
+    
+    this.searchAndRemovePower(this.selectedSuperPower.id);
+  
     this.selectedSuperPower.assigned=false;
   }
 }

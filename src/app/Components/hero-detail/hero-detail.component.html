@@ -1,0 +1,16 @@
+
+
+  <div class="card" style="width: 15rem;">
+      <img class="card-img-top" src="../../../assets/user.png">
+      <div class="card-body">
+        <h5 class="card-title">Hero: {{hero.name}}</h5>
+       
+        <p class="card-text">
+            <span style="font-weight: bold;" >Pet:</span>  <span *ngIf="hero.pet">{{hero.pet.name}}</span> 
+        <br>  
+        <span style="font-weight: bold;">Superpower: </span> <span *ngIf="hero.superpower">{{hero.superpower.name}} </span> 
+        <br>  
+        <span style="font-weight: bold;">Superpower info: </span><br><span *ngIf="hero.superpower">{{hero.superpower.description}}</span></p>
+        <a style="color:white"(click)="goBack()" class="btn btn-primary">Go Back</a>
+      </div>
+    </div>

@@ -12,13 +12,17 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AlertModule } from 'ngx-bootstrap';
 import { HeropetComponent } from './Components/heropet/heropet.component';
+import { HeroDetailComponent } from './Components/hero-detail/hero-detail.component';
+import { PetDetailComponent } from './Components/pet-detail/pet-detail.component';
 @NgModule({
   declarations: [
     AppComponent,
     HeroesComponent,
     PetsComponent,
     AssignComponent,
-    HeropetComponent
+    HeropetComponent,
+    HeroDetailComponent,
+    PetDetailComponent
   ],
   imports: [
     AlertModule.forRoot(),

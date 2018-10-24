@@ -8,3 +8,5 @@
           <span  class="badge">{{pet.id}}</span> {{pet.name}}<img src="../../../assets/checked.png" *ngIf="pet.hero"  > <img src="../../../../assets/checkedB.png" *ngIf="pet.superpower"  >
     </li>
 </ul>
+
+<button *ngIf="selectedPet" type="button" class="btn btn-primary" routerLink="/petdetail/{{selectedPet.id}}">{{selectedPet.name}} Details</button>
