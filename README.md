@@ -4,9 +4,4 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## TODO:
 
-* component signals to service 
-* heroes > pets
-* pets > heroes
-* power > hero
-* power > pets
-
+TBA
