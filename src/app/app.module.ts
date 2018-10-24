@@ -7,6 +7,10 @@ import { PetsComponent } from './Components/pets/pets.component';
 import { AssignComponent } from './Components/assign/assign.component';
 
 import { SuperpowerModule } from './Modules/superpower/superpower.module';
+
+import { AppRoutingModule } from './app-routing.module';
+
+import { AlertModule } from 'ngx-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
@@ -15,8 +19,11 @@ import { SuperpowerModule } from './Modules/superpower/superpower.module';
     AssignComponent
   ],
   imports: [
+    AlertModule.forRoot(),
     BrowserModule,
-    SuperpowerModule
+    SuperpowerModule,
+    AppRoutingModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

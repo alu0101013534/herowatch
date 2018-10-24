@@ -12,35 +12,34 @@
 
 <!--The content below is only a placeholder and can be replaced.-->
 
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   
-  <a class="navbar-brand" href="#">
-    <img src="../assets/superheroe.png" width="30" height="30" alt="">
-    {{title}}</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="#">Dashboard </a>
-      </li>
-    </ul>
-  </div>
-</nav>
+    <a class="navbar-brand" href="#">
+      <img src="../assets/superheroe.png" width="30" height="30" alt="">
+      {{title}}</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link"  routerLink="/heroes" href="#">Heroes </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"  routerLink="/pets" href="#">Pets </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
 <div class="container"> 
 
   <div class="row"> 
 <div class="col-md-4">
-  hero: {{hero}}
-  <app-heroes (selectedHeroOutput)="heroEvent($event)"></app-heroes>
+  <router-outlet ></router-outlet>
 </div>
 
-<div class="col-md-4">
-  
-    pet: {{pet}}
-  <app-pets (selectedPetOutput)="petEvent($event)"></app-pets>
-</div>
 <div class="col-md-4">
   
     Superpower: {{superpower}}
