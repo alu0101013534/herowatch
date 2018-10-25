@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http'; 
 import { Hero } from '../Classes/hero';
 import { Pet } from '../Classes/pet';
 import { SuperPower } from '../Classes/superpower';
@@ -7,6 +8,7 @@ import { PETS } from '../Mocks/mock-pets';
 import { SUPERPOWERS } from '../Mocks/mock-superpowers';
 import { BehaviorSubject } from 'rxjs';
 import { Observable, of } from 'rxjs';
+//import { data_json } from '../../assets/json/hero.json';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +22,8 @@ export class HeroService {
   selectedPet: Pet;
   selectedSuperPower: SuperPower;
   private heroLast:boolean;
+
+  
 
 
 // getters and setters
@@ -193,8 +197,15 @@ removePartner(){
   }
   constructor() { 
     this.assignHeroesPets();
+    //this.getJSON().subscribe(data => {
+    //  console.log(data_json);
+  //});
   }
 
+  //public getJSON(): Observable<any> {
+     // return this.http.get("../../assets/json/heroes.json")
+
+//}
   deleteAll(){
     var i;
     for(i=0;i<HEROES.length;i++){
@@ -291,4 +302,5 @@ removePartner(){
     
     this.messageSource.next(message);
   }
+
 }

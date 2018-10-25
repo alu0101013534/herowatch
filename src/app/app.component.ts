@@ -27,5 +27,5 @@ export class AppComponent {
     this.superpower=superpower.name;
   }
 
-  
+
 }

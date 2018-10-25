@@ -1,15 +1,14 @@
 
-<div class="card" style="width: 15rem;">
-    <img class="card-img-top" src="../../../assets/pet.png">
+<div class="card small">
+    <img class="card-img-top" src="../../../assets/img/pet.png">
     <div class="card-body">
       <h5 class="card-title">Pet: {{pet.name}}</h5>
-     
       <p class="card-text">
-          <span style="font-weight: bold;" >Hero:</span>  <span *ngIf="pet.hero">{{pet.hero.name}}</span> 
+          <span class="bold" >Hero:</span>  <span *ngIf="pet.hero">{{pet.hero.name}}</span> 
       <br>  
-      <span style="font-weight: bold;">Superpower: </span> <span *ngIf="pet.superpower">{{pet.superpower.name}} </span> 
+      <span class="bold">Superpower: </span> <span *ngIf="pet.superpower">{{pet.superpower.name}} </span> 
       <br>  
-      <span style="font-weight: bold;">Superpower info: </span><br><span *ngIf="pet.superpower">{{pet.superpower.description}}</span></p>
+      <span class="bold">Superpower info: </span><br><span *ngIf="pet.superpower">{{pet.superpower.description}}</span></p>
       
       <button  type="button" class="btn btn-primary" routerLink="/pets" skipLocationChange>Go Back</button>
     </div>

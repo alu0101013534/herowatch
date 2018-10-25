@@ -15,6 +15,8 @@ import { HeropetComponent } from './Components/heropet/heropet.component';
 import { HeroDetailComponent } from './Components/hero-detail/hero-detail.component';
 import { PetDetailComponent } from './Components/pet-detail/pet-detail.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbdModalComponent, NgbdModalContent } from './Components/modal/modal.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +25,10 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     AssignComponent,
     HeropetComponent,
     HeroDetailComponent,
-    PetDetailComponent
+    PetDetailComponent,
+    NgbdModalComponent,
+    NgbdModalComponent, 
+    NgbdModalContent
   ],
   imports: [
     AlertModule.forRoot(),
@@ -33,6 +38,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     AppRoutingModule
 
   ],
+  entryComponents: [NgbdModalContent],
   providers: [],
   bootstrap: [AppComponent]
 })
