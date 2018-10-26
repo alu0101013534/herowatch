@@ -1,11 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { HeroService } from '../../Services/hero.service';
 
 @Component({
   selector: 'ngbd-modal-content',
   template: `
   <div class="modal-header">
-    <h4 class="modal-title">Warning!</h4>
+    <h4 class="modal-title">{{title}}</h4>
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -14,8 +15,15 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
     <p> {{name}} has a previous assingnement if you continue it will override previous operations!</p>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="cancelAssign()">Cancel</button>
-    <button type="button" class="btn btn-outline-danger" (click)="okAssign()">OK</button>
+    
+    <div *ngIf="type==0">
+    <button type="button" class="btn btn-outline-primary" (click)="ok()">OK</button>
+    </div>
+
+    <div *ngIf="type==1">
+    <button type="button" class="btn btn-outline-dark" (click)="ok()">Cancel</button>&nbsp;
+    <button type="button" class="btn btn-outline-danger" (click)="okAssign()">OK ONE </button>
+    </div>
   </div>
 `
 })
@@ -23,10 +31,11 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class NgbdModalContent {
   
   @Input() name;
-
+  @Input() title;
+  @Input() type;
   constructor(public activeModal: NgbActiveModal) {}
 
-  cancelAssign(){
+  ok(){
     this.activeModal.close('Close click');
   }
   okAssign(){
@@ -40,10 +49,13 @@ export class NgbdModalContent {
   templateUrl: './modal.component.html'
 })
 export class NgbdModalComponent {
-  constructor(private modalService: NgbModal) {}
+  constructor(private modalService: NgbModal,private heroservice:HeroService) {}
 
   open() {
     const modalRef = this.modalService.open(NgbdModalContent);
-    modalRef.componentInstance.name = 'World';
+    modalRef.componentInstance.name = this.heroservice.selectedHero.name;
+    
+    modalRef.componentInstance.title = "Warning!";
+    modalRef.componentInstance.type = 0;
   }
 }
