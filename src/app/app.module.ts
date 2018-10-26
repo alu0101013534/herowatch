@@ -7,7 +7,6 @@ import { PetsComponent } from './Components/pets/pets.component';
 import { AssignComponent } from './Components/assign/assign.component';
 
 import { SuperpowerModule } from './Modules/superpower/superpower.module';
-
 import { AppRoutingModule } from './app-routing.module';
 
 import { AlertModule } from 'ngx-bootstrap';
@@ -16,6 +15,9 @@ import { HeroDetailComponent } from './Components/hero-detail/hero-detail.compon
 import { PetDetailComponent } from './Components/pet-detail/pet-detail.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { NgbdModalComponent, NgbdModalContent } from './Components/modal/modal.component';
+
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import { NgbdModalComponent, NgbdModalContent } from './Components/modal/modal.c
     AlertModule.forRoot(),
     BrowserModule,
     SuperpowerModule,
+    HttpClientModule,
     NgbModule,
     AppRoutingModule
 

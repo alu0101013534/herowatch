@@ -3,11 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Hero } from '../Classes/hero';
 import { Pet } from '../Classes/pet';
 import { SuperPower } from '../Classes/superpower';
-import { HEROES } from '../Mocks/mock-heroes';
-import { PETS } from '../Mocks/mock-pets';
-import { SUPERPOWERS } from '../Mocks/mock-superpowers';
 import { BehaviorSubject } from 'rxjs';
 import { Observable, of } from 'rxjs';
+import { TryCatchStmt } from '@angular/compiler';
 //import { data_json } from '../../assets/json/hero.json';
 
 @Injectable({
@@ -24,17 +22,20 @@ export class HeroService {
   private heroLast:boolean;
 
   
+  HEROES: Hero[];
+  PETS: Pet[];
+  SUPERPOWERS: SuperPower[];
 
 
 // getters and setters
   getHeroes(): Observable<Hero[]> {
-    return of(HEROES);
+    return of(this.HEROES);
   }
   getPets(): Observable<Pet[]> {
-    return of(PETS);
+    return of(this.PETS);
   }
   getSuperpowers(): Observable<SuperPower[]> {
-    return  of(SUPERPOWERS);
+    return  of(this.SUPERPOWERS);
   }
 
   getSelectedHero(): Observable<Hero> {
@@ -101,16 +102,16 @@ newAssignPower(){
 // superpowers cant be repeated so every time a new assignment is comming we need to remove that power if someone has it 
 searchAndRemovePower(powId: number){
 var i;
-      for(i=0;i<HEROES.length;i++){
-        if( HEROES[i].superpower!=null && HEROES[i].superpower.id==powId){
+      for(i=0;i<this.HEROES.length;i++){
+        if( this.HEROES[i].superpower!=null && this.HEROES[i].superpower.id==powId){
             
-          HEROES[i].superpower=null;
+          this.HEROES[i].superpower=null;
         }
       }
-    for(i=0;i<PETS.length;i++){
-      if(PETS[i].superpower!=null && PETS[i].superpower.id==powId){
+    for(i=0;i<this.PETS.length;i++){
+      if(this.PETS[i].superpower!=null && this.PETS[i].superpower.id==powId){
           
-        PETS[i].superpower=null;
+        this.PETS[i].superpower=null;
       }
     }
 
@@ -146,7 +147,7 @@ removePartner(){
     var randomN; // a random generated number
 
     //fill 
-    for(i=0;i<HEROES.length;i++){
+    for(i=0;i<this.HEROES.length;i++){
       posH[i]=i;
       posP[i]=i;
     }
@@ -154,13 +155,13 @@ removePartner(){
     var aux;
     j=0;
     do{
-      for(i=0;i<HEROES.length;i++){
-        randomN=Math.floor(Math.random() * HEROES.length);     // returns a random integer from 0 to 9
+      for(i=0;i<this.HEROES.length;i++){
+        randomN=Math.floor(Math.random() * this.HEROES.length);     // returns a random integer from 0 to 9
         aux= posH[randomN];
         posH[randomN]= posH[i];
         posH[i]=aux;
 
-        randomN=Math.floor(Math.random() * PETS.length);     // returns a random integer from 0 to 9
+        randomN=Math.floor(Math.random() * this.PETS.length);     // returns a random integer from 0 to 9
         aux= posP[randomN];
         posP[randomN]= posP[i];
         posP[i]=aux;
@@ -173,49 +174,49 @@ removePartner(){
     
     console.log("Random Positions Pets:",posH);
   
-    for(i=0;i<HEROES.length;i++){
-      HEROES[posH[i]].pet=PETS[posP[i]];
-      PETS[posP[i]].hero=HEROES[posH[i]];
+    for(i=0;i<this.HEROES.length;i++){
+      this.HEROES[posH[i]].pet=this.PETS[posP[i]];
+      this.PETS[posP[i]].hero=this.HEROES[posH[i]];
     
     }
     
     j=0;
-    for(i=0;i<SUPERPOWERS.length;i++){
-      if(i>=HEROES.length)
+    for(i=0;i<this.SUPERPOWERS.length;i++){
+      if(i>=this.HEROES.length)
       { 
-      PETS[j].superpower=SUPERPOWERS[i];
-      SUPERPOWERS[i].assigned=true;
+      this.PETS[j].superpower=this.SUPERPOWERS[i];
+      this.SUPERPOWERS[i].assigned=true;
       j++;
       }
       else {
-      HEROES[i].superpower=SUPERPOWERS[i];
+      this.HEROES[i].superpower=this.SUPERPOWERS[i];
       
-      SUPERPOWERS[i].assigned=true;
+      this.SUPERPOWERS[i].assigned=true;
       }
     }
 
   }
-  constructor() { 
-    this.assignHeroesPets();
-    //this.getJSON().subscribe(data => {
-    //  console.log(data_json);
-  //});
+  constructor( private http : HttpClient) { 
+    this.load();
+  
   }
 
-  //public getJSON(): Observable<any> {
-     // return this.http.get("../../assets/json/heroes.json")
 
-//}
+load(){
+  this.powersJSON();
+  this.heroesJSON();
+  this.petsJSON();
+}
   deleteAll(){
     var i;
-    for(i=0;i<HEROES.length;i++){
-      HEROES[i].pet=null;
-      PETS[i].hero=null;
+    for(i=0;i<this.HEROES.length;i++){
+      this.HEROES[i].pet=null;
+      this.PETS[i].hero=null;
       
-      HEROES[i].superpower.assigned=false;
-      PETS[i].superpower.assigned=false;
-      HEROES[i].superpower=null;
-      PETS[i].superpower=null;
+      this.HEROES[i].superpower.assigned=false;
+      this.PETS[i].superpower.assigned=false;
+      this.HEROES[i].superpower=null;
+      this.PETS[i].superpower=null;
     
     }
     
@@ -227,18 +228,18 @@ removePartner(){
     var i;
     
     if(this.selectedPet.hero!=null){
-    for(i=0;i<HEROES.length;i++){
-      if( HEROES[i].id==this.selectedPet.hero.id){
+    for(i=0;i<this.HEROES.length;i++){
+      if( this.HEROES[i].id==this.selectedPet.hero.id){
           
-        HEROES[i].pet=null;
+        this.HEROES[i].pet=null;
       }
     }
   }
     if(this.selectedHero.pet!=null){
-    for(i=0;i<PETS.length;i++){
-      if( PETS[i].id==this.selectedHero.pet.id){
+    for(i=0;i<this.PETS.length;i++){
+      if( this.PETS[i].id==this.selectedHero.pet.id){
           
-        PETS[i].hero=null;
+        this.PETS[i].hero=null;
       }
     }
   }
@@ -247,9 +248,9 @@ removePartner(){
 
   getPet(id){
     var i;
-    for(i=0;i<PETS.length;i++){
-      if(PETS[i].id==parseInt(id)){
-        return PETS[i];
+    for(i=0;i<this.PETS.length;i++){
+      if(this.PETS[i].id==parseInt(id)){
+        return this.PETS[i];
       }
     
     }
@@ -257,9 +258,9 @@ removePartner(){
   }
   getHero(id){
     var i;
-    for(i=0;i<HEROES.length;i++){
-      if(HEROES[i].id==parseInt(id)){
-        return HEROES[i];
+    for(i=0;i<this.HEROES.length;i++){
+      if(this.HEROES[i].id==parseInt(id)){
+        return this.HEROES[i];
       }
     
     }
@@ -268,20 +269,20 @@ removePartner(){
 
   
   getThisHero(id): Observable<Hero> {
-    return of(HEROES.find(hero => hero.id === id))
+    return of(this.HEROES.find(hero => hero.id === id))
   }
 
   
   getThisPet(id): Observable<Pet> {
-    return of(PETS.find(pet => pet.id === id))
+    return of(this.PETS.find(pet => pet.id === id))
   }
 
   getHeroFromPet(pet){
     var i;
     if(pet.hero!=null){
-    for(i=0;i<HEROES.length;i++){
-      if((HEROES[i].pet!=null) && (HEROES[i].pet.id==pet.id)){
-        return HEROES[i];
+    for(i=0;i<this.HEROES.length;i++){
+      if((this.HEROES[i].pet!=null) && (this.HEROES[i].pet.id==pet.id)){
+        return this.HEROES[i];
       }
     
     }
@@ -303,4 +304,67 @@ removePartner(){
     this.messageSource.next(message);
   }
 
+
+
+
+
+ 
+ public heroesJSON(): string{
+
+  let that = this;
+  var str="";
+      console.log(str);
+  that.http.get("../../assets/json/heroes.json").subscribe(data => {
+      //that.parametros =  data;
+      
+      str=JSON.stringify(data);
+
+      str=str.slice(10, str.length-1);
+      that.HEROES=JSON.parse(str);
+
+    return str;
+  }),
+  error => console.log("Error: ", error)
+  return str;
+  }  
+
+
+
+public petsJSON(): string{
+
+    let that = this;
+    var str="";
+        console.log(str);
+    that.http.get("../../assets/json/pets.json").subscribe(data => {
+        //that.parametros =  data;
+        
+        str=JSON.stringify(data);
+  
+        str=str.slice(8, str.length-1);
+  
+        that.PETS=JSON.parse(str);
+      return str;
+    }),
+    error => console.log("Error: ", error)
+    return str;
+    }  
+
+ public powersJSON(): string{
+
+      let that = this;
+      var str="";
+          console.log(str);
+      that.http.get("../../assets/json/superpowers.json").subscribe(data => {
+          //that.parametros =  data;
+          
+          str=JSON.stringify(data);
+    
+          str=str.slice(15, str.length-1);
+          that.SUPERPOWERS=JSON.parse(str);
+          
+        return str;
+      }),
+      error => console.log("Error: ", error)
+      return str;
+      }  
 }

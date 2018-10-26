@@ -56,6 +56,6 @@ export class NgbdModalComponent {
     modalRef.componentInstance.name = this.heroservice.selectedHero.name;
     
     modalRef.componentInstance.title = "Warning!";
-    modalRef.componentInstance.type = 0;
+    modalRef.componentInstance.type = 1;
   }
 }
