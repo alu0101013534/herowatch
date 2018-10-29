@@ -21,7 +21,6 @@ export class PetsComponent implements OnInit {
   }
   getPets(): void {
    
-    this.heroService.petsJSON();
         
   }
 

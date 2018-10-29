@@ -14,18 +14,20 @@ export class AssignComponent implements OnInit {
   constructor(private heroService: HeroService) { }
   buttonNames:string [];
   buttonTitles:string [];
+  buttonBodies:string [];
   buttonTypes:number [];
   ngOnInit() {
-    this.buttonNames=["test","test2"];
+    this.buttonNames=["New Assign All","test2"];
     this.buttonTitles=["Alert","Warning"];
     this.buttonTypes=[0,1,2,3,4,5,6];
+    this.buttonBodies=["Are you sure ? Heroes will get new pets parners and everyone will get new non repeatable superpowers","test2"];
   }
 
   newAssign(): void {
     this.heroService.assignHeroesPets();
- }
- deleteAll(): void {
-   this.heroService.deleteAll();
+}
+deleteAll(): void {
+  this.heroService.deleteAll();
 }
 newAssignPower(): void {
   this.heroService.newAssignPower();

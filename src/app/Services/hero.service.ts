@@ -359,4 +359,11 @@ public petsJSON(){
       }),
       error => console.log("Error: ", error)
       }  
+
+
+      load(){
+
+        this.petsJSON();
+        this.heroesJSON();
+      }
 }

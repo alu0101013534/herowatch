@@ -31,7 +31,7 @@ export class AppComponent implements OnInit{
   constructor(private heroService: HeroService) { }
 
   ngOnInit() {
-
+    this.heroService.load();
   }
 
 }
