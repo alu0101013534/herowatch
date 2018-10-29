@@ -17,10 +17,10 @@ export class AssignComponent implements OnInit {
   buttonBodies:string [];
   buttonTypes:number [];
   ngOnInit() {
-    this.buttonNames=["New Assign All","test2"];
+    this.buttonNames=["New Assign All","Delete All"];
     this.buttonTitles=["Alert","Warning"];
     this.buttonTypes=[0,1,2,3,4,5,6];
-    this.buttonBodies=["Are you sure ? Heroes will get new pets parners and everyone will get new non repeatable superpowers","test2"];
+    this.buttonBodies=["Are you sure ? Heroes will get new pets partners and everyone will get new non repeatable superpowers","Are you sure ? Heroes will lost their partners and everyone will lose their superpowers"];
   }
 
   newAssign(): void {

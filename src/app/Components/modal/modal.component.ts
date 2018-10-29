@@ -25,6 +25,11 @@ import { HeroService } from '../../Services/hero.service';
     <button type="button" class="btn btn-outline-dark" (click)="ok()">Cancel</button>&nbsp;
     <button type="button" class="btn btn-outline-danger" (click)="okAssign()">OK</button>
     </div>
+
+    <div *ngIf="type==2">
+    <button type="button" class="btn btn-outline-dark" (click)="ok()">Cancel</button>&nbsp;
+    <button type="button" class="btn btn-outline-danger" (click)="okDeleteAll()">OK</button>
+    </div>
   </div>
 `
 })
@@ -45,11 +50,16 @@ export class NgbdModalContent {
   okAssign(){
 
     this.heroService.assignHeroesPets();
-    this.sendAlert("Success","Heroes now have new pets parners and everyone have new non repeatable superpowers");
-    this.activeModal.close('Close click');
+    this.sendAlert("Success","Heroes now have new pets partners and everyone have new non repeatable superpowers");
 
   }
 
+  okDeleteAll(){
+
+    this.heroService.deleteAll();
+    this.sendAlert("Success","Heroes now are free without partners and without superpowers GOD HELP US!");
+
+  }
   sendAlert(tittle,body ){
     this.activeModal.close('Close click');
     const modalRef = this.modalService.open(NgbdModalContent);
