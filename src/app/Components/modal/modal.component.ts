@@ -33,6 +33,7 @@ export class NgbdModalContent {
   @Input() name;
   @Input() title;
   @Input() type;
+  
   constructor(public activeModal: NgbActiveModal) {}
 
   ok(){
@@ -51,11 +52,15 @@ export class NgbdModalContent {
 export class NgbdModalComponent {
   constructor(private modalService: NgbModal,private heroservice:HeroService) {}
 
+  @Input() title;
+  @Input() type;
+
+  
+  @Input() buttonName: string;
   open() {
     const modalRef = this.modalService.open(NgbdModalContent);
     modalRef.componentInstance.name = this.heroservice.selectedHero.name;
-    
-    modalRef.componentInstance.title = "Warning!";
-    modalRef.componentInstance.type = 1;
+    modalRef.componentInstance.title = this.title;
+    modalRef.componentInstance.type = this.type;
   }
 }

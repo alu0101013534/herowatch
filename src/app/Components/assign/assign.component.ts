@@ -12,8 +12,13 @@ import { SuperPower } from '../../Classes/superpower';
 export class AssignComponent implements OnInit {
 
   constructor(private heroService: HeroService) { }
-
+  buttonNames:string [];
+  buttonTitles:string [];
+  buttonTypes:number [];
   ngOnInit() {
+    this.buttonNames=["test","test2"];
+    this.buttonTitles=["Alert","Warning"];
+    this.buttonTypes=[0,1,2,3,4,5,6];
   }
 
   newAssign(): void {

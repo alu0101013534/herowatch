@@ -20,8 +20,8 @@ export class PetsComponent implements OnInit {
     this.getPets();
   }
   getPets(): void {
-    this.heroService.getPets()
-        .subscribe(pets => this.pets = pets);
+   
+    this.heroService.petsJSON();
         
   }
 
@@ -33,4 +33,7 @@ export class PetsComponent implements OnInit {
     
     this.heroService.setSelectedPet(this.selectedPet);
   }
+
+  
+
 }

@@ -18,11 +18,15 @@ export class SuperpowerComponent implements OnInit {
   constructor(private heroService: HeroService) { }
 
   ngOnInit() {
-    this.getPowers();
+    
+    this.getPowers()
   }
-  getPowers(): void {
-    this.heroService.getSuperpowers()
-        .subscribe(superpowers => this.superpowers = superpowers);
+  getPowers() {
+    let that= this;
+     this.heroService.powersJSON(function (datos){
+       
+      that.superpowers = datos;
+     })
         
   }
 
@@ -32,6 +36,11 @@ export class SuperpowerComponent implements OnInit {
     
     this.heroService.setSelectedSuperPower(this.selectedPower);
     
+}
+
+public mostrarPoderes(){
+  console.log("poderes", this.heroService.SUPERPOWERS)
+  console.log("poderes en compo" , this.superpowers)
 }
 
   

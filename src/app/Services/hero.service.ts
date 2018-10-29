@@ -8,9 +8,7 @@ import { Observable, of } from 'rxjs';
 import { TryCatchStmt } from '@angular/compiler';
 //import { data_json } from '../../assets/json/hero.json';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class HeroService {
 
   private messageSource = new BehaviorSubject('1');
@@ -197,16 +195,12 @@ removePartner(){
 
   }
   constructor( private http : HttpClient) { 
-    this.load();
+    console.log("construyendo")
+    
   
   }
 
 
-load(){
-  this.powersJSON();
-  this.heroesJSON();
-  this.petsJSON();
-}
   deleteAll(){
     var i;
     for(i=0;i<this.HEROES.length;i++){
@@ -309,11 +303,10 @@ load(){
 
 
  
- public heroesJSON(): string{
+ public heroesJSON(){
 
   let that = this;
   var str="";
-      console.log(str);
   that.http.get("../../assets/json/heroes.json").subscribe(data => {
       //that.parametros =  data;
       
@@ -322,19 +315,18 @@ load(){
       str=str.slice(10, str.length-1);
       that.HEROES=JSON.parse(str);
 
-    return str;
   }),
-  error => console.log("Error: ", error)
-  return str;
+  error => console.log("Error: ", error);
+  
+ 
   }  
 
 
 
-public petsJSON(): string{
+public petsJSON(){
 
     let that = this;
     var str="";
-        console.log(str);
     that.http.get("../../assets/json/pets.json").subscribe(data => {
         //that.parametros =  data;
         
@@ -343,28 +335,28 @@ public petsJSON(): string{
         str=str.slice(8, str.length-1);
   
         that.PETS=JSON.parse(str);
-      return str;
     }),
     error => console.log("Error: ", error)
-    return str;
     }  
 
- public powersJSON(): string{
+ public powersJSON(callback) {
 
       let that = this;
       var str="";
-          console.log(str);
+      var res :SuperPower[];
       that.http.get("../../assets/json/superpowers.json").subscribe(data => {
           //that.parametros =  data;
           
           str=JSON.stringify(data);
     
           str=str.slice(15, str.length-1);
-          that.SUPERPOWERS=JSON.parse(str);
+          res=JSON.parse(str);
           
-        return str;
+          that.SUPERPOWERS=res;
+          
+          callback(res);
+
       }),
       error => console.log("Error: ", error)
-      return str;
       }  
 }

@@ -17,6 +17,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { NgbdModalComponent, NgbdModalContent } from './Components/modal/modal.component';
 
 import { HttpClientModule } from '@angular/common/http';
+import { HeroService } from './Services/hero.service';
 
 
 @NgModule({
@@ -42,7 +43,7 @@ import { HttpClientModule } from '@angular/common/http';
 
   ],
   entryComponents: [NgbdModalContent],
-  providers: [],
+  providers: [HeroService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

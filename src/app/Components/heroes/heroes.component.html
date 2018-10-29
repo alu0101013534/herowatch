@@ -2,7 +2,7 @@
 
 <h2>My Heroes</h2>     
 <ul class="heroes">
-      <li *ngFor="let hero of heroes"
+      <li *ngFor="let hero of heroService.HEROES"
         [class.selected]="hero === selectedHero"
         (click)="onSelect(hero)">
           <span  class="badge">{{hero.id}}</span> {{hero.name}}<img src="../../../assets/img/checked.png" *ngIf="hero.pet"> <img src="../../../../assets/img/checkedB.png" *ngIf="hero.superpower"  >
