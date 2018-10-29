@@ -38,11 +38,6 @@ export class SuperpowerComponent implements OnInit {
     
 }
 
-public mostrarPoderes(){
-  console.log("poderes", this.heroService.SUPERPOWERS)
-  console.log("poderes en compo" , this.superpowers)
-}
-
   
 
 }
