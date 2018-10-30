@@ -24,6 +24,7 @@ export class HeroService {
   PETS: Pet[];
   SUPERPOWERS: SuperPower[];
 
+  completed:boolean;
 
 // getters and setters
   getHeroes(): Observable<Hero[]> {
@@ -65,6 +66,17 @@ export class HeroService {
     this.selectedSuperPower=s;
   }
   
+
+  // Observable string sources
+  private componentMethodCallSource =new BehaviorSubject('1');
+  
+  // Observable string streams
+  componentMethodCalled$ = this.componentMethodCallSource.asObservable();
+
+  // Service message commands
+  callComponentMethod() {
+    this.componentMethodCallSource.next('2');
+  }
 //assign a power to a hero or pet  
 newAssignPower(){
   if((this.selectedHero!=null || this.selectedPet!=null)&& this.selectedSuperPower!=null ){
@@ -366,4 +378,42 @@ public petsJSON(){
         this.petsJSON();
         this.heroesJSON();
       }
+
+
+      checkLeagueComplete(){
+var i;
+var check=true;
+        for(i=0;i<this.HEROES.length;i++){
+        
+        if( this.HEROES[i].pet==null){
+        
+          check=false;
+          break;
+          }
+      }
+      for(i=0;i<this.PETS.length;i++){
+        
+        if( this.PETS[i].hero==null){
+        
+          check=false;
+        
+          break;
+          }
+      }
+      for(i=0;i<this.SUPERPOWERS.length;i++){
+        
+        if( this.SUPERPOWERS[i].assigned==false){
+        
+        
+          check=false;
+          break;
+          }
+      }
+      
+    this.completed=check;
+    if (this.completed)
+      console.log("completado");
+      this.callComponentMethod();
+    }
+
 }
