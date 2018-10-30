@@ -4,34 +4,8 @@ import { HeroService } from '../../Services/hero.service';
 
 @Component({
   selector: 'ngbd-modal-content',
-  template: `
-  <div class="modal-header">
-    <h4 class="modal-title">{{title}}</h4>
-    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <p> {{name}} {{body}}</p>
-  </div>
-  <div class="modal-footer">
-    
-    
-    <div *ngIf="type==0">
-    <button type="button" class="btn btn-outline-primary" (click)="ok()">OK</button>
-    </div>
-
-    <div *ngIf="type==1">
-    <button type="button" class="btn btn-outline-dark" (click)="ok()">Cancel</button>&nbsp;
-    <button type="button" class="btn btn-outline-danger" (click)="okAssign()">OK</button>
-    </div>
-
-    <div *ngIf="type==2">
-    <button type="button" class="btn btn-outline-dark" (click)="ok()">Cancel</button>&nbsp;
-    <button type="button" class="btn btn-outline-danger" (click)="okDeleteAll()">OK</button>
-    </div>
-  </div>
-`
+  templateUrl: './modalcontent.html',
+  styleUrls: ['./modalcontent.css']
 })
 
 export class NgbdModalContent {
@@ -44,8 +18,7 @@ export class NgbdModalContent {
   constructor(public activeModal: NgbActiveModal,private modalService: NgbModal, private heroService: HeroService) {}
 
   ok(){
-    this.activeModal.close('Close click');
-   
+    this.activeModal.close('Close click'); 
   }
   okAssign(){
 
@@ -60,6 +33,33 @@ export class NgbdModalContent {
     this.sendAlert("Success","Heroes now are free without partners and without superpowers GOD HELP US!");
 
   }
+
+
+  okNewAssignPower() {
+    this.heroService.newAssignPower();
+    this.sendAlert("Success",'<span class="hero">'+this.heroService.selectedHero.name+"</span> has "+ this.heroService.selectedSuperPower.name);
+  }
+  okRemovePower() {
+    this.heroService.removePower();
+    this.sendAlert("Success",this.heroService.selectedHero.name+" no longer has "+ this.heroService.selectedSuperPower.name);
+  }
+  
+
+  okAssignPartner() {
+      
+    if(this.heroService.selectedPet!=null && this.heroService.selectedHero!=null){
+
+    
+    this.heroService.assignPartner();
+    this.sendAlert("Success",this.heroService.selectedHero.name+" has "+ this.heroService.selectedPet.name+" as partner");
+  }
+}
+
+okRemovePartner() {
+  this.heroService.removePartner();
+  
+  this.sendAlert("Success",this.heroService.selectedHero.name+" no longer has "+ this.heroService.selectedPet.name+" as partner");
+}
   sendAlert(tittle,body ){
     this.activeModal.close('Close click');
     const modalRef = this.modalService.open(NgbdModalContent);
@@ -73,7 +73,8 @@ export class NgbdModalContent {
 
 @Component({
   selector: 'ngbd-modal-component',
-  templateUrl: './modal.component.html'
+  templateUrl: './modal.component.html',
+  styleUrls: ['./modalcontent.css']
 })
 export class NgbdModalComponent {
   constructor(private modalService: NgbModal,private heroservice:HeroService) {}
