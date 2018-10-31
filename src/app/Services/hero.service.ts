@@ -154,13 +154,23 @@ removePartner(){
     var times=20; // number of times it shuffles array positions
     var posH=[];  // array with the heroes positions
     var posP=[];  // array with the pets positions
+    var posS=[];  // array with the superpowers positions
+    
     var randomN; // a random generated number
 
     //fill 
     for(i=0;i<this.HEROES.length;i++){
       posH[i]=i;
       posP[i]=i;
+      
     }
+    for(i=0;i<this.SUPERPOWERS.length;i++){
+
+      posS[i]=i;
+      
+    }
+
+    
     console.log(posH);
     var aux;
     j=0;
@@ -175,6 +185,14 @@ removePartner(){
         aux= posP[randomN];
         posP[randomN]= posP[i];
         posP[i]=aux;
+
+        
+      }
+      for(i=0;i<this.SUPERPOWERS.length;i++){
+        randomN=Math.floor(Math.random() * this.SUPERPOWERS.length);     // returns a random integer from 0 to 9
+        aux= posS[randomN];
+        posS[randomN]= posS[i];
+        posS[i]=aux;
       }
     j++;
   }
@@ -187,21 +205,21 @@ removePartner(){
     for(i=0;i<this.HEROES.length;i++){
       this.HEROES[posH[i]].pet=this.PETS[posP[i]];
       this.PETS[posP[i]].hero=this.HEROES[posH[i]];
-    
+      
     }
     
     j=0;
     for(i=0;i<this.SUPERPOWERS.length;i++){
       if(i>=this.HEROES.length)
       { 
-      this.PETS[j].superpower=this.SUPERPOWERS[i];
-      this.SUPERPOWERS[i].assigned=true;
+      this.PETS[j].superpower=this.SUPERPOWERS[posS[i]];
+      this.SUPERPOWERS[posS[i]].assigned=true;
       j++;
       }
       else {
-      this.HEROES[i].superpower=this.SUPERPOWERS[i];
-      
-      this.SUPERPOWERS[i].assigned=true;
+      this.HEROES[i].superpower=this.SUPERPOWERS[posS[i]];
+    
+      this.SUPERPOWERS[posS[i]].assigned=true;
       }
     }
 
@@ -403,8 +421,6 @@ var check=true;
       for(i=0;i<this.SUPERPOWERS.length;i++){
         
         if( this.SUPERPOWERS[i].assigned==false){
-        
-        
           check=false;
           break;
           }
